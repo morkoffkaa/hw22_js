@@ -12,9 +12,6 @@ class Human {
         this.age = age
     }
 
-    get info() {
-        console.log(`HUMAN: ${this.name} ${this.age}`)
-    }
 }
 
 
@@ -37,9 +34,9 @@ class Auto {
         this.year = year;
         this.carNumber = carNumber;
     }
+owner = null;
 
     owner(owner) {
-        owner.age = Human.age;
         if (owner.age < 18) {
             console.log('You are not allowed to be a car owner!')
         } else {
@@ -56,10 +53,11 @@ const diana = new Human('Diana', '25');
 const bmw = new Auto('bmw', 'x5', '2020', 'CA2789EC');
 const vw = new Auto('volkswagen', 'golf', '2022', 'DF2776OP');
 const hyundai = new Auto('hyundai', 'elantra', '2013', 'GY5673BH');
+const toyota = new Auto('toyota', 'rav4', '2023', 'TY5678BH');
 
 bmw.owner(yana);
 vw.owner(oleg);
 hyundai.owner(diana)
 
 console.log(bmw.owner)
-console.log(bmw.year)
+console.log(toyota.year)
