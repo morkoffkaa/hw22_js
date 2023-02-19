@@ -1,70 +1,65 @@
-//  Створити клас Людина.
+//  1. Створити сутність "Людина".
 // Властивості:
 // імʼя;
-// стать.
+// вік.
 // Методи:
-// конструктор, який приймає два параметри: імʼя та стать.
-
-//  Створити клас Квартира.
-// Властивості:
-// конструктор не потрібен;
-// масив жителів, який при створенні пустий.
-// Методи:
-// додати жителя - метод повинен приймати екземпляр класу Людина, та додавати до масиву жителів.
-// 
-// Створити клас Будинок.
-// Властивості:
-// масив квартир, який при створенні пустий;
-// максимальна кількість квартир.
-// Методи:
-// конструктор, який приймає один параметр: максимальну кількість квартир;
-// додати квартиру - метод повинен приймати екземпляр класу Квартира, перевіряти, 
-// чи не буде кількість перевищувати максимальну кількість квартир, і якщо це так, 
-// додати квартиру, в іншому випадку виводить у консоль відповідне повідомлення.
+// конструктор, який приймає два параметри: імʼя та вік;
+// метод, який виводить у консоль інформацію про людину.
 
 class Human {
-    constructor(name, gender) {
+    constructor(name, age) {
         this.name = name
-        this.gender = gender
+        this.age = age
+    }
 
+    get info() {
+        console.log(`HUMAN: ${this.name} ${this.age}`)
     }
 }
 
-const oleg = new Human('Oleg', 'man');
 
-const yana = new Human('Yana', 'woman');
 
-const diana = new Human('Diana', 'woman');
 
-console.log(oleg.name)
-console.log(yana.gender)
+// 2. Створити сутність "Автомобіль".
+// Властивості:
+// марка, модель, рік виписку, номерний знак (або на Ваш розсуд);
+// власник.
 
-class Flat {
+// Методи:
+// конструктор, який приймає чотитри параметри (тобто, всі окрім власника): марка, модель, рік виписку, номерний знак 
+// присвоїти власника - метод повинен приймати екземпляр класу Людина, та зберігати екземпляр класу Людина у відповідному полі, якщо вік більше 18, інакше виводити у консоль відповідне повідомлення
+// метод, який виводить у консоль інформацію про автомобіль та викликає метод виводу інформації класу Людина для виведення інформації про власника
 
-    people = [];
+class Auto {
+    constructor(carBrend, model, year, carNumber) {
+        this.carBrend = carBrend;
+        this.model = model;
+        this.year = year;
+        this.carNumber = carNumber;
+    }
 
-    flatPeople = Array.of(oleg, yana, diana);
+    owner(owner) {
+        owner.age = Human.age;
+        if (owner.age < 18) {
+            console.log('You are not allowed to be a car owner!')
+        } else {
+            this.name = owner;
+        }
+    }
+
 }
 
-const firstFlat = new Flat;
+const oleg = new Human('Oleg', '15');
+const yana = new Human('Yana', '22');
+const diana = new Human('Diana', '25');
 
+const bmw = new Auto('bmw', 'x5', '2020', 'CA2789EC');
+const vw = new Auto('volkswagen', 'golf', '2022', 'DF2776OP');
+const hyundai = new Auto('hyundai', 'elantra', '2013', 'GY5673BH');
 
+bmw.owner(yana);
+vw.owner(oleg);
+hyundai.owner(diana)
 
-// class House {
-
-//     flatsAmount = [];
-
-//     constructor(maxAmount) {
-//         this.maxAmount = maxAmount
-//     }
-
-//     addFlat(maxAmount) {
-
-//         if (flatsAmount.length <= maxAmount) {
-//             flatsAmount2 = flatsAmount.push(Flat);
-
-//         } else console.log("Sorry, your House is fool")
-//         return console.log(flatsAmount2);
-//     }
-
-// }
+console.log(bmw.owner)
+console.log(bmw.year)
