@@ -11,7 +11,9 @@ class Human {
         this.name = name
         this.age = age
     }
-
+    info() {
+        console.log(`Name: ${this.name}, age: ${this.age}`)
+    }
 }
 
 
@@ -27,23 +29,35 @@ class Human {
 // присвоїти власника - метод повинен приймати екземпляр класу Людина, та зберігати екземпляр класу Людина у відповідному полі, якщо вік більше 18, інакше виводити у консоль відповідне повідомлення
 // метод, який виводить у консоль інформацію про автомобіль та викликає метод виводу інформації класу Людина для виведення інформації про власника
 
+
 class Auto {
-    constructor(carBrend, model, year, carNumber) {
-        this.carBrend = carBrend;
+    constructor(carBrand, model, year, carNumber) {
+        this.carBrend = carBrand;
         this.model = model;
         this.year = year;
         this.carNumber = carNumber;
     }
-owner = null;
 
-    owner(owner) {
-        if (owner.age < 18) {
-            console.log('You are not allowed to be a car owner!')
+    owner = null;
+
+    setOwner(humanInstance) {
+        if (humanInstance.age < 18) {
+            console.log(`${humanInstance.name} You are not allowed to be a car owner!`)
         } else {
-            this.name = owner;
+            this.owner = humanInstance;
         }
     }
 
+    info() {
+        console.log(`Brand: ${this.carBrend}; Model: ${this.model}; Year: ${this.year}; Plate: ${this.carNumber}`);
+
+        if (this.owner) {
+            console.log("Owner:");
+            this.owner.info();
+        } else {
+            console.log("Owner is not defined!");
+        }
+    }
 }
 
 const oleg = new Human('Oleg', '15');
@@ -55,9 +69,9 @@ const vw = new Auto('volkswagen', 'golf', '2022', 'DF2776OP');
 const hyundai = new Auto('hyundai', 'elantra', '2013', 'GY5673BH');
 const toyota = new Auto('toyota', 'rav4', '2023', 'TY5678BH');
 
-bmw.owner(yana);
-vw.owner(oleg);
-hyundai.owner(diana)
-
-console.log(bmw.owner)
-console.log(toyota.year)
+bmw.setOwner(yana);
+bmw.info();
+vw.setOwner(oleg);
+vw.info();
+hyundai.setOwner(diana);
+hyundai.info();
